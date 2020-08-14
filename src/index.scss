@@ -1,0 +1,122 @@
+@import 'mixims.scss';
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'B612', sans-serif;
+}
+
+body {
+    color: var(--black);
+}
+
+*:focus {
+    outline: none;
+}
+
+:root {
+    /* theme colors */
+    @include defineColorRGB(--black, 49, 60, 60);
+    @include defineColorRGB(--white, 252, 252, 252);
+    @include defineColorRGB(--gray, 245, 240, 246);
+    @include defineColorRGB(--active-color, 0, 187, 204);
+    @include defineColorRGB(--active-color-hover, 0, 234, 255);
+    @include defineColorRGB(--ok-color, 72, 155, 61);
+    @include defineColorRGB(--error-color, 193, 63, 23);
+    @include defineColorRGB(--shell-green-color, 164, 226, 45);
+
+    /* mix measures */
+    --default-sep: 8px;
+    --mid-sep: 4px;
+    --border-radius: 3px;
+
+    /* responsive breakpoints */
+    --mobile-portrait:  360px;
+    --tablet-portrait:  768px;
+    --tablet-landscape: 1366px;
+    --wide-desktop:     1920px;
+}
+
+.container {
+    max-width: var(--tablet-landscape);
+    margin: 0 auto;
+}
+
+@media (max-width: 1366px) {
+    .container {
+        max-width: calc(100% - 4*var(--default-sep));
+    }
+}
+
+.button {
+    display: inline-block;
+    border: 1px solid var(--active-color-hover);
+    border-radius: calc(var(--border-radius)*2);
+    padding: var(--mid-sep) var(--default-sep);
+    margin: var(--default-sep) var(--mid-sep);
+    min-width: 60px;
+
+    background-color: var(--second-color);
+    color: var(--active-color);
+    font-size: 1em;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--active-color-hover);
+        border-color: var(--active-color);
+        color: var(--white)
+    }
+    
+
+    &:disabled {
+        background-color: var(--gray);
+        @include alpha(border-color, --black, 0.4);
+        @include alpha(color, --black, 0.4);
+        cursor: default;
+        &:hover {
+            background-color: var(--gray);
+            @include alpha(border-color, --black, 0.4);
+            @include alpha(color, --black, 0.4);
+        }
+    }
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 1.2em 0 0.5em 0;
+}
+
+h1:first-of-type, 
+h2:first-of-type, 
+h3:first-of-type, 
+h4:first-of-type, 
+h5:first-of-type, 
+h6:first-of-type {
+    margin-top: calc(var(--default-sep) / 2);
+}
+
+pre {
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.form-control {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80px auto;
+    label {
+        padding: var(--default-sep);
+    }
+    input, select {
+        width: 100%;
+    }
+    margin-top: var(--default-sep);
+}
+
+input, select {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--active-color);
+    padding: var(--default-sep);
+    font-size: 1em;
+}

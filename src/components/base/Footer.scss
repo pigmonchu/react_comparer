@@ -1,0 +1,10 @@
+.footer {
+	background-color: var(--active-color);
+	color: var(--white);
+	bottom: 0;
+	position: fixed;
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding: var(--default-sep);
+}
