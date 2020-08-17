@@ -6,12 +6,12 @@ import './Layout.scss'
 
 export const Layout = ({children}) => (
     <div className="Layout">
-        <Header>dithlab - comparador </Header>
+        <Header>dithlab - simulador </Header>
         <div className="container">
             {children}
         </div>
         <Footer>
-        hecha en Alcubas por dithlab.com
+        hecha en Alcublas por dithlab.com
         </Footer>
     </div>
 )

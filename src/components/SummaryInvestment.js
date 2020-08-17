@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Selector} from './base/Selector'
+import moment from 'moment'
 
 import './SummaryInvestment.scss';
 
@@ -7,6 +8,9 @@ export const SummaryInvestment = ({plan: planSelected, initialInvestment}) => {
 
     const [selectedMaxBenefit, setSelectedMaxBenefit] = useState()
     const [swCompounding, setSwCompounding] = useState(false)
+    moment.locale('es')
+    const first_date = moment("25-08-2020", "DD-MM-YYYY");
+
 
     const handleSelector = (checked) => {
         setSelectedMaxBenefit(checked)
@@ -21,7 +25,7 @@ export const SummaryInvestment = ({plan: planSelected, initialInvestment}) => {
                 <section className="summary-investment">
                     <div className="summary-investment__parameters">
                         <Selector selName="interes"rightLabel={`${(planSelected.max_interest*100).toFixed(2)}%`} leftLabel={`${(planSelected.min_interest*100).toFixed(2)}%`} onSelect={handleSelector}/>
-                        <Selector selName="compounding" rightLabel="Compuesto" leftLabel="Simple" onSelect={handleCompounding}/>
+                        <Selector selName="compounding"     rightLabel="Compuesto" leftLabel="Simple" onSelect={handleCompounding}/>
                         <article className="form-control">
                             <label className="summary-investment__parameters--initial-investment-name">Inv. inicial:</label>
                             <label className="summary-investment__parameters--initial-investment-value data">{initialInvestment}</label>
@@ -40,11 +44,11 @@ export const SummaryInvestment = ({plan: planSelected, initialInvestment}) => {
                         </article>
                         <article className={`form-control ${selectedMaxBenefit ? 'no-v': ''}`}>
                             <label className="summary-investment__parameters--min-final-net-name">Neto Final:</label>
-                            <label className="summary-investment__parameters--min-final-net-value data">{resumen.final_net_min.toFixed(8)}</label>
+                            <label className="summary-investment__parameters--min-final-net-value data">{`${resumen.final_net_min.toFixed(8)} (${(resumen.final_net_min - initialInvestment).toFixed(8)})`}</label>
                         </article>
                         <article className={`form-control ${selectedMaxBenefit ? '': 'no-v'}`}>
                             <label className="summary-investment__parameters--max-final-net-name">Neto Final:</label>
-                            <label className="summary-investment__parameters--max-final-net-value data">{resumen.final_net_max.toFixed(8)}</label>
+                            <label className="summary-investment__parameters--max-final-net-value data">{`${resumen.final_net_max.toFixed(8)} (${(resumen.final_net_max - initialInvestment).toFixed(8)})`}</label>
                         </article>
                     
                     </div>
@@ -64,7 +68,7 @@ export const SummaryInvestment = ({plan: planSelected, initialInvestment}) => {
                         { 
                         resumen.months.map((month, ix) => (
                             <tr key={`fila${ix}`}>
-                                <td key={`month${ix}`} className="table-summary__month">{ix}</td>
+                                <td key={`month${ix}`} className="table-summary__month">{first_date.add(1, 'month').format('MMM-YY')}</td>
                                 <td key={`mininvest${ix}`} className={`table-summary__min-invest ${selectedMaxBenefit ? 'no-v': ''}`}>{month.min_month_investment.toFixed(8)}</td>
                                 <td key={`maxinvest${ix}`} className={`table-summary__max-invest ${selectedMaxBenefit ? '': 'no-v'}`}>{month.max_month_investment.toFixed(8)}</td>
                                 <td key={`minbenefit${ix}`} className={`table-summary__min-benefit ${selectedMaxBenefit ? 'no-v': ''}`}>{month.min_benefit.toFixed(8)}</td>

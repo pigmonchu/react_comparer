@@ -16,7 +16,14 @@
 }
 
 .table-summary {
+    margin-top: var(--default-sep);
     width: 100%;
+    &__month {
+        width: 16%;
+    }
+    &__min-invest, &__max-invest, &__min-benefit, &__max-benefit, &__min-acum, &__max-acum {
+        width: 28%;
+    }
     th {
         font-weight: bold;
         text-transform: capitalize;
