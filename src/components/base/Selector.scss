@@ -1,0 +1,57 @@
+.selector__switch {
+    background-color: var(--gray);
+    border: 2px inset var(--second-color);
+    border-radius: 12px;
+    width: 40px;
+    height: 20px;
+    position: relative;
+    margin: var(--default-sep);
+}
+
+.selector__switch-button {
+    background-color: var(--active-color);
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+    position: absolute;
+    border: 2px outset var(--active-color);
+    top: 1px;
+}
+
+.selector__switch-label {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    content: ' ';
+    display: inline-block;
+    margin-left: 1px; 
+}
+
+.selector__switch-checkbox {
+    position: absolute;
+    visibility: hidden;
+}
+
+.selector__switch-checkbox ~ .selector__switch-button {
+    right: unset;
+    left: 2px;
+}
+
+.selector__switch-checkbox:checked ~ .selector__switch-button {
+    right: 2px;
+    left: unset;
+}
+
+.selector {
+    margin: inherit --var(mid-sep);
+    font-family:Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    width: max-content;
+    grid-column-gap: 4px;
+}
+
+.label {
+    margin-top: 2px;
+    padding: var(--default-sep);    
+}

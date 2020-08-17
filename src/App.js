@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 
 import { Layout } from './components/base/Layout'
 import { ProductSelector } from './components/ProductSelector';
+import { ProductDetail } from './components/ProductDetail';
+import { SummaryInvestment} from './components/SummaryInvestment'
+
 const products = [
   {
       id: "arbistar",
@@ -17,7 +20,8 @@ const products = [
               compounding_limit: 1,
               min_interest: 0.053,
               max_interest: 0.06,
-              cost_year_quantity: 0.02
+              cost_year_quantity: 0.02,
+              cost_year_currency: 'BTC'
           },
           {
               id: "partner",
@@ -28,7 +32,8 @@ const products = [
               compounding_limit: 3,
               min_interest: 0.0655,
               max_interest: 0.0725,
-              cost_year_quantity: 0.05
+              cost_year_quantity: 0.05,
+              cost_year_currency: 'BTC'
           },
           {
               id: "executive",
@@ -39,7 +44,8 @@ const products = [
               compounding_limit: 10,
               min_interest: 0.077,
               max_interest: 0.085,
-              cost_year_quantity: 0.1
+              cost_year_quantity: 0.1,
+              cost_year_currency: 'BTC'
           },
           {
               id: "privilege",
@@ -81,7 +87,7 @@ const products = [
               min_interest: 0.2,
               max_interest: 0.4,
               cost_year_quantity: 12000,
-              cost_year_currency: 'USD'
+              cost_year_currency: 'EUR'
           },
           {
               id: "premium",
@@ -93,7 +99,7 @@ const products = [
               min_interest: 0.2,
               max_interest: 0.25,
               cost_year_quantity: 6000,
-              cost_year_currency: 'USD'
+              cost_year_currency: 'EUR'
           },
           {
               id: "diamond",
@@ -105,7 +111,7 @@ const products = [
               min_interest: 0.2,
               max_interest: 0.25,
               cost_year_quantity: 3000,
-              cost_year_currency: 'USD'
+              cost_year_currency: 'EUR'
           },
           {
               id: "oro",
@@ -117,7 +123,7 @@ const products = [
               min_interest: 0.2,
               max_interest: 0.25,
               cost_year_quantity: 1250,
-              cost_year_currency: 'USD'
+              cost_year_currency: 'EUR'
           },
           {
               id: "plata",
@@ -129,7 +135,7 @@ const products = [
               min_interest: 0.2,
               max_interest: 0.25,
               cost_year_quantity: 500,
-              cost_year_currency: 'USD'
+              cost_year_currency: 'EUR'
           },
           {
               id: "bronce",
@@ -141,17 +147,36 @@ const products = [
               min_interest: 0.2,
               max_interest: 0.25,
               cost_year_quantity: 250,
-              cost_year_currency: 'USD'
+              cost_year_currency: 'EUR'
           }
       ]
   }
 ]
 
 function App() {
+  const [planSelected, setPlanSelected] = useState('')
+  const [initialInvestment, setInitialInvestment] = useState(0)
+
+  const selectPlan = plan => {
+    setPlanSelected(plan || -1)
+    setInitialInvestment(0)
+    console.log('Elegido', plan)
+  }
+
+  const saveInvestmen = initialInvestment => {
+    setInitialInvestment(initialInvestment)
+  }
+
   return (
     <div className="App">
         <Layout>
-          <ProductSelector products={products}/>
+          <ProductSelector products={products} onSelect={selectPlan}/>
+          { planSelected ? 
+          <div>
+            <ProductDetail plan={planSelected} onInvestmentChange={saveInvestmen}/>
+            <SummaryInvestment plan={planSelected} initialInvestment={initialInvestment}/>
+            </div>
+          : ''}
         </Layout>
     </div>
   );

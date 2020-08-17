@@ -1,0 +1,33 @@
+.summary-investment {
+    &__parameters {
+        display: grid;
+        grid-template-columns: calc(50% - var(--mid-sep)) calc(50% - var(--mid-sep));
+        column-gap: var(--default-sep);
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-investment {
+        &__parameters {
+            display: block;
+        }
+    }
+    
+}
+
+.table-summary {
+    width: 100%;
+    th {
+        font-weight: bold;
+        text-transform: capitalize;
+        background-color: var(--active-color);
+        color: var(--white);
+        padding: var(--mid-sep);
+    }
+    td {
+        padding: var(--mid-sep);
+    }
+    tr:nth-child(even) {
+        background: var(--gray);
+    }
+}

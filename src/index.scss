@@ -21,7 +21,8 @@ body {
     @include defineColorRGB(--white, 252, 252, 252);
     @include defineColorRGB(--gray, 245, 240, 246);
     @include defineColorRGB(--active-color, 0, 187, 204);
-    @include defineColorRGB(--active-color-hover, 0, 234, 255);
+    @include defineColorRGB(--second-color, 0, 234, 255);
+    @include defineColorRGB(--active-color-hover, 0, 140, 153);
     @include defineColorRGB(--ok-color, 72, 155, 61);
     @include defineColorRGB(--error-color, 193, 63, 23);
     @include defineColorRGB(--shell-green-color, 164, 226, 45);
@@ -38,6 +39,21 @@ body {
     --wide-desktop:     1920px;
 }
 
+button, .button {
+	font-size: 1em;
+	padding: var(--default-sep) 0;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--active-color);
+	background-color: var(--active-color);
+	font-weight: bold;
+	color: var(--white);
+    min-width: 120px;
+    
+    &:hover {
+        background-color: var(--active-color-hover);
+        cursor: pointer;
+    }
+}
 .container {
     max-width: var(--tablet-landscape);
     margin: 0 auto;
@@ -45,7 +61,8 @@ body {
 
 @media (max-width: 1366px) {
     .container {
-        max-width: calc(100% - 4*var(--default-sep));
+        max-width: calc(100% - 2*var(--default-sep));
+        margin: 0 var(--default-sep);
     }
 }
 
@@ -102,21 +119,32 @@ pre {
 }
 
 .form-control {
-    width: 100%;
     display: grid;
     grid-template-columns: 80px auto;
     label {
-        padding: var(--default-sep);
+        margin-right: var(--default-sep);
+        padding: var(--default-sep) 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-    input, select {
+    input, select, label.data {
         width: 100%;
     }
     margin-top: var(--default-sep);
+    width: 100%;
 }
 
-input, select {
+input, select, label.data {
     border-radius: var(--border-radius);
     border: 1px solid var(--active-color);
     padding: var(--default-sep);
     font-size: 1em;
+}
+
+label.data, input:disabled {
+    background-color: var(--gray);
+}
+
+.no-v {
+    display: none;
 }

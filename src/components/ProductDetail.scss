@@ -1,4 +1,4 @@
-.product-selector {
+.plan-detail {
     display: grid;
     grid-template-columns: 49% 49%;
     justify-content: space-between;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 768px){
-    .product-selector {
+    .plan-detail {
         display: block;
 
     }
