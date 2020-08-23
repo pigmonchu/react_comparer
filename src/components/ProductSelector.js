@@ -13,7 +13,7 @@ export const ProductSelector = (props) => {
         const idProductSelected = event.target.value;
         let productSelected = products.filter(product => product.id === idProductSelected)
         setProductSelected(productSelected ? productSelected[0] : '');
-        onSelect('')
+        onSelect(productSelected, '')
     }
 
     const handleChangePlan = event => {
@@ -24,7 +24,7 @@ export const ProductSelector = (props) => {
         newPlan = newPlan ? newPlan[0] : -1
         console.log("puto plan selected", newPlan)
         setPlanSelected(newPlan)
-        onSelect(newPlan)
+        onSelect(productSelected, newPlan)
     }
 
     return (

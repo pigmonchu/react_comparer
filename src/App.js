@@ -154,16 +154,32 @@ const products = [
 ]
 
 function App() {
-  const [planSelected, setPlanSelected] = useState('')
-  const [initialInvestment, setInitialInvestment] = useState(0)
+    const [productSelected, setProductSelected] = useState('')
+    const [planSelected, setPlanSelected] = useState('')
+    const [initialInvestment, setInitialInvestment] = useState(0)
 
-  const selectPlan = plan => {
+  const selectPlan = (product, plan) => {
+    setProductSelected(product)
     setPlanSelected(plan || -1)
     setInitialInvestment(0)
-    console.log('Elegido', plan)
+    console.log('Elegido', product, plan)
+  }
+
+  const getPlanMinusInvestment = (investment) => {
+        let productInvestmentYes = productSelected.plans.filter(plan => plan.min_investment_quantity <= investment)
+        productInvestmentYes = productInvestmentYes.slice(-1)
+        return productInvestmentYes ? productInvestmentYes[0] : ''
   }
 
   const saveInvestmen = initialInvestment => {
+    if (planSelected && initialInvestment < planSelected.min_investment_quantity) {
+        const planMinusInvestment = getPlanMinusInvestment(initialInvestment)
+        const newPlan = Object.assign({}, planSelected)
+        newPlan.min_investment_quantity = planMinusInvestment.min_investment_quantity
+        newPlan.cost_year_quantity = planMinusInvestment.cost_year_quantity
+        newPlan.compounding_limit = planMinusInvestment.compounding_limit
+        setPlanSelected(newPlan)
+    }
     setInitialInvestment(initialInvestment)
   }
 

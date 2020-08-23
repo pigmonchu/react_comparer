@@ -42,7 +42,7 @@ body {
 button, .button {
 	font-size: 1em;
 	padding: var(--default-sep) 0;
-	border-radius: var(--border-radius);
+	border-radius: 50px;
 	border: 1px solid var(--active-color);
 	background-color: var(--active-color);
 	font-weight: bold;
@@ -63,39 +63,6 @@ button, .button {
     .container {
         max-width: calc(100% - 2*var(--default-sep));
         margin: 0 var(--default-sep);
-    }
-}
-
-.button {
-    display: inline-block;
-    border: 1px solid var(--active-color-hover);
-    border-radius: calc(var(--border-radius)*2);
-    padding: var(--mid-sep) var(--default-sep);
-    margin: var(--default-sep) var(--mid-sep);
-    min-width: 60px;
-
-    background-color: var(--second-color);
-    color: var(--active-color);
-    font-size: 1em;
-    cursor: pointer;
-
-    &:hover {
-        background-color: var(--active-color-hover);
-        border-color: var(--active-color);
-        color: var(--white)
-    }
-    
-
-    &:disabled {
-        background-color: var(--gray);
-        @include alpha(border-color, --black, 0.4);
-        @include alpha(color, --black, 0.4);
-        cursor: default;
-        &:hover {
-            background-color: var(--gray);
-            @include alpha(border-color, --black, 0.4);
-            @include alpha(color, --black, 0.4);
-        }
     }
 }
 

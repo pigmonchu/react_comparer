@@ -55,7 +55,9 @@ export const SummaryInvestment = ({plan: planSelected, initialInvestment}) => {
                     <table className="table-summary">
                         <thead>
                             <tr>
-                                <th className="table-summary__month">Mes</th>
+                                <th className="table-summary__month">
+                                    Mes
+                                </th>
                                 <th className={`table-summary__min-invest ${selectedMaxBenefit ? 'no-v': ''}`}>Min inversion</th>
                                 <th className={`table-summary__max-invest ${selectedMaxBenefit ? '': 'no-v'}`}>Max inversion</th>
                                 <th className={`table-summary__min-benefit ${selectedMaxBenefit ? 'no-v': ''}`}>Beneficio min.</th>
@@ -97,6 +99,7 @@ export const SummaryInvestment = ({plan: planSelected, initialInvestment}) => {
         let roiYearMin = []
         let i = 0;
         let min_month_investment, max_month_investment
+
         for (i=0; i<=planSelected.months; i++) {
             if (swCompounding) {
                 min_month_investment = acumMin < planSelected.compounding_limit ? acumMin : +planSelected.compounding_limit
