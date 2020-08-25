@@ -1,17 +1,10 @@
 import React, {useState} from 'react'
 import './Selector.scss'
 
-export const Selector = ({onSelect, leftLabel, rightLabel, selName}) => {
+export const Selector = ({onSelect, leftLabel, rightLabel, selName, selValue}) => {
 
-    const [stateSelector, setStateSelector] = useState(false)
+    const [stateSelector, setStateSelector] = useState(selValue || false)
     
-
-
-    const changeSelect = (event) => {
-        setStateSelector(event.target.checked)
-        onSelect(event.target.checked)
-    }
-
     const changeSelectManual = (event) => {
         const checked = !stateSelector
         setStateSelector(checked)
@@ -22,7 +15,7 @@ export const Selector = ({onSelect, leftLabel, rightLabel, selName}) => {
     <div className="selector">
         <span name="selector__label-left" className="label selector__label-left" onClick={changeSelectManual}>{leftLabel}</span>
         <div className="selector__switch">
-            <input id={`_selector__switch--${selName}`} className="selector__switch-checkbox" onChange={changeSelectManual} checked={stateSelector} type="checkbox"/>
+            <input id={`_selector__switch--${selName}`} className="selector__switch-checkbox" onChange={changeSelectManual} checked={stateSelector} type="checkbox" defaultChecked={stateSelector}/>
             <div className="selector__switch-button"></div>
             <label htmlFor={`_selector__switch--${selName}`} className="selector__switch-label"></label>
         </div>

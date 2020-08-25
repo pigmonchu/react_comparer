@@ -12,7 +12,10 @@ export const ProductDetail = ({plan: selectedPlan, onInvestmentChange: saveInves
     }
 
     const clickCalculate = (event) => {
-        if (initialInvest < selectedPlan.min_investment_quantity) {
+        if (!initialInvest) {
+            alert("Debe invertir algo")
+            return
+        }else if (initialInvest < selectedPlan.min_investment_quantity) {
             alert("Inversion insuficiente si no vienes del Community Bot")
         }
         saveInvestment(initialInvest)

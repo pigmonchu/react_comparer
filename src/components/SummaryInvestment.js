@@ -24,8 +24,8 @@ export const SummaryInvestment = ({plan: planSelected, initialInvestment}) => {
             return (
                 <section className="summary-investment">
                     <div className="summary-investment__parameters">
-                        <Selector selName="interes"rightLabel={`${(planSelected.max_interest*100).toFixed(2)}%`} leftLabel={`${(planSelected.min_interest*100).toFixed(2)}%`} onSelect={handleSelector}/>
-                        <Selector selName="compounding"     rightLabel="Compuesto" leftLabel="Simple" onSelect={handleCompounding}/>
+                        <Selector selName="interes"rightLabel={`${(planSelected.max_interest*100).toFixed(2)}%`} leftLabel={`${(planSelected.min_interest*100).toFixed(2)}%`} onSelect={handleSelector} selValue={selectedMaxBenefit}/>
+                        <Selector selName="compounding"     rightLabel="Compuesto" leftLabel="Simple" onSelect={handleCompounding} selValue={swCompounding}/>
                         <article className="form-control">
                             <label className="summary-investment__parameters--initial-investment-name">Inv. inicial:</label>
                             <label className="summary-investment__parameters--initial-investment-value data">{initialInvestment}</label>
